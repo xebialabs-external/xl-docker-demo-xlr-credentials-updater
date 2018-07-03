@@ -11,7 +11,7 @@ do
       count=$(( count+1 ))
     else 
       echo "Website is up"
-      python /opt/xlr/credentials_updater.py "/keys/petportal-credentials.conf"
+      python credentials_updater.py "/keys/petportal-credentials.conf"
       exit $?
     fi
   else
