@@ -8,7 +8,7 @@ try:
 except ImportError:
     from ConfigParser import ConfigParser
 
-print "Updating credentials"
+print("Updating credentials")
 
 xlr_username="admin"
 xlr_passwword="admin"
@@ -30,7 +30,7 @@ def save_configuration_object(config_object):
     result2 = urllib2.urlopen(request)
 
 def update_ci(server_title, server_type, username, properties):
-    print "Processing credential [%s] for server type [%s] with title [%s]" % (username, server_type, server_title)
+    print("Processing credential [%s] for server type [%s] with title [%s]" % (username, server_type, server_title))
     config_object = get_configuration_object(section, server_type)
     for item in properties:
         config_object[item[0]] = item[1]
@@ -44,5 +44,5 @@ cp.read(sys.argv[1])
 for section in cp.sections():
     update_ci(section, cp.get(section, "type"), cp.get(section, "username"), cp.items(section))
 
-print "Updated credentials"
+print("Updated credentials")
 
