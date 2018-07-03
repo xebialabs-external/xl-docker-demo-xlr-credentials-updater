@@ -2,7 +2,9 @@
 import sys
 import json
 import base64
-import urllib, urllib2
+import urllib
+import urllib.parse
+import urllib.request
 try:
     from configparser import ConfigParser
 except ImportError:
@@ -17,17 +19,17 @@ base64string = base64.encodestring('%s:%s' % (xlr_username, xlr_passwword)).repl
 def get_configuration_object(server_title, server_type):
     url_encoded_title = urllib.quote_plus(server_title)
     url = "http://xlr:5516/api/v1/config/byTypeAndTitle?configurationType=%s&title=%s" % (server_type, url_encoded_title)
-    request = urllib2.Request(url) 
+    request = urllib.request.Request(url) 
     request.add_header("Authorization", "Basic %s" % base64string)   
-    result = urllib2.urlopen(request)
+    result = urllib.request.urlopen(request)
     return json.loads(result.read())[0]
 
 def save_configuration_object(config_object):
     headers = {'Content-Type': 'application/json'}
-    request = urllib2.Request("http://xlr:5516/api/v1/config/%s" % (config_object["id"]), json.dumps(config_object), headers)
+    request = urllib.request.Request("http://xlr:5516/api/v1/config/%s" % (config_object["id"]), json.dumps(config_object), headers)
     request.add_header("Authorization", "Basic %s" % base64string)   
     request.get_method = lambda: 'PUT'
-    result2 = urllib2.urlopen(request)
+    result2 = urllib.request.urlopen(request)
 
 def update_ci(server_title, server_type, username, properties):
     print("Processing credential [%s] for server type [%s] with title [%s]" % (username, server_type, server_title))
