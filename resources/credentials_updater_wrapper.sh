@@ -7,7 +7,7 @@ do
     wget --spider -q http://xlr:5516 
     if [ $? -ne 0 ] ;then 
       echo "waiting $count"
-      sleep 1
+      sleep 3
       count=$(( count+1 ))
     else 
       echo "Website is up"
