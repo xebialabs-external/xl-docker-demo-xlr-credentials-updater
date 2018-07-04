@@ -17,7 +17,7 @@ xlr_password="admin"
 base64string = base64.encodestring(('%s:%s' % (xlr_username, xlr_password)).encode()).decode().replace('\n', '')
 
 def get_configuration_object(server_title, server_type):
-    url_encoded_title = urllib.quote_plus(server_title)
+    url_encoded_title = urllib.parse.quote(server_title)
     url = "http://xlr:5516/api/v1/config/byTypeAndTitle?configurationType=%s&title=%s" % (server_type, url_encoded_title)
     request = urllib.request.Request(url) 
     request.add_header("Authorization", "Basic %s" % base64string)   
