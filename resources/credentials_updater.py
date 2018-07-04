@@ -13,8 +13,8 @@ except ImportError:
 print("Updating credentials")
 
 xlr_username="admin"
-xlr_passwword="admin"
-base64string = base64.encodestring('%s:%s' % (xlr_username, xlr_passwword)).replace('\n', '')
+xlr_password="admin"
+base64string = base64.encodestring(('%s:%s' % (xlr_username, xlr_password)).encode()).decode().replace('\n', '')
 
 def get_configuration_object(server_title, server_type):
     url_encoded_title = urllib.quote_plus(server_title)
