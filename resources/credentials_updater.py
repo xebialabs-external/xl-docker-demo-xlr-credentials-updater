@@ -26,7 +26,7 @@ def get_configuration_object(server_title, server_type):
 
 def save_configuration_object(config_object):
     headers = {'Content-Type': 'application/json'}
-    request = urllib.request.Request("http://xlr:5516/api/v1/config/%s" % (config_object["id"]), json.dumps(config_object), headers)
+    request = urllib.request.Request("http://xlr:5516/api/v1/config/%s" % (config_object["id"]), urllib.parse.urlencode(json.dumps(config_object)).encode("utf-8"), headers)
     request.add_header("Authorization", "Basic %s" % base64string)   
     request.get_method = lambda: 'PUT'
     result2 = urllib.request.urlopen(request)
