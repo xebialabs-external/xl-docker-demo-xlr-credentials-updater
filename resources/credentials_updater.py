@@ -6,9 +6,9 @@ import urllib
 import urllib.parse
 import urllib.request
 try:
-    from configparser import ConfigParser
+    from configparser import RawConfigParser
 except ImportError:
-    from ConfigParser import ConfigParser
+    from ConfigParser import RawConfigParser
 
 print("Updating credentials")
 
@@ -38,7 +38,7 @@ def update_ci(server_title, server_type, username, properties):
         config_object[item[0]] = item[1]
     save_configuration_object(config_object)
 
-cp = ConfigParser()
+cp = RawConfigParser()
 #To avoid parser to convert all keys to lowercase by default
 cp.optionxform = str
 cp.read(sys.argv[1])
