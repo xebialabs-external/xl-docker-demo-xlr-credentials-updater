@@ -3,11 +3,11 @@ count=0
 echo "Waiting for server to start..."
 while true
 do
-  if [ $count -le 45 ]; then
+  if [ $count -le 50 ]; then
     wget --spider -q http://xlr:5516 
     if [ $? -ne 0 ] ;then 
       echo "waiting $count"
-      sleep 3
+      sleep 5
       count=$(( count+1 ))
     else 
       echo "Website is up"
